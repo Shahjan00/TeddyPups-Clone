@@ -3464,7 +3464,28 @@
     <script>self.__next_f.push([1, "1b:C\n17:C\n1a:C\n10:C\na:C\n7:C\n"])</script>
     <script>self.__next_f.push([1, "1d:false\n1c:null\n"])</script>
 
-</body>
+<script>
+(function(){
+var BASE="/TeddyPups-Clone";
+function fixLinks(){
+document.querySelectorAll('a[href]').forEach(function(a){
+var h=a.getAttribute('href');
+if(!h||h.startsWith('http')||h.startsWith('#')||h.startsWith('mailto:')||h.startsWith('tel:')||h.startsWith(BASE+'/')||h===BASE+'/')return;
+if(h==='/'){a.setAttribute('href',BASE+'/');return;}
+if(h.startsWith('/')){
+// Map clean URLs to .html files
+var page=h.split('#')[0].split('?')[0];
+var suffix=h.substring(page.length);
+var file=page+'.html';
+a.setAttribute('href',BASE+file+suffix);
+}
+});
+}
+// Run now and observe for React re-renders
+fixLinks();
+new MutationObserver(fixLinks).observe(document.body,{childList:true,subtree:true});
+})();
+</script></body>
 <!-- Mirrored from puppy.instabizweb.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Oct 2026 06:57:33 GMT -->
 
 </html>
