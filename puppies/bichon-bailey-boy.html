@@ -1215,7 +1215,28 @@
         integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw=="
         data-cf-beacon='{"version":"2024.11.0","token":"e0e4542e023e4144ace94537a7ec84a8","r":1,"spa":2}'
         crossorigin="anonymous"></script>
-</body>
+<script>
+(function(){
+var BASE="/TeddyPups-Clone";
+function fixLinks(){
+document.querySelectorAll('a[href]').forEach(function(a){
+var h=a.getAttribute('href');
+if(!h||h.startsWith('http')||h.startsWith('#')||h.startsWith('mailto:')||h.startsWith('tel:')||h.startsWith(BASE+'/')||h===BASE+'/')return;
+if(h==='/'){a.setAttribute('href',BASE+'/');return;}
+if(h.startsWith('/')){
+// Map clean URLs to .html files
+var page=h.split('#')[0].split('?')[0];
+var suffix=h.substring(page.length);
+var file=page+'.html';
+a.setAttribute('href',BASE+file+suffix);
+}
+});
+}
+// Run now and observe for React re-renders
+fixLinks();
+new MutationObserver(fixLinks).observe(document.body,{childList:true,subtree:true});
+})();
+</script></body>
 <!-- Mirrored from puppy.instabizweb.com/puppies/bichon-bailey-boy by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Oct 2026 07:05:38 GMT -->
 
 </html>
